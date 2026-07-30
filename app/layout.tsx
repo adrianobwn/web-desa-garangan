@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={archivo.variable}>
+    <html lang="id" className={archivo.variable} data-scroll-behavior="smooth">
       <body>{children}</body>
     </html>
   );

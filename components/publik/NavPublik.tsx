@@ -45,9 +45,8 @@ export function NavPublik() {
         <Image
           src="/lambang-boyolali.svg"
           alt="Lambang Kabupaten Boyolali"
-          width={36}
+          width={24}
           height={36}
-          style={{ height: 36, width: "auto" }}
         />
         <Link
           href="/"
@@ -114,9 +113,8 @@ export function NavPublik() {
           <Image
             src="/lambang-boyolali.svg"
             alt="Lambang Kabupaten Boyolali"
-            width={24}
+            width={16}
             height={24}
-            style={{ height: 24, width: "auto" }}
           />
           <span
             style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: 14 }}

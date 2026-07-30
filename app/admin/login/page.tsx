@@ -41,9 +41,8 @@ export default async function HalamanLogin({
           <Image
             src="/lambang-boyolali.svg"
             alt="Lambang Kabupaten Boyolali"
-            width={32}
+            width={22}
             height={32}
-            style={{ height: 32, width: "auto" }}
           />
           <span
             style={{

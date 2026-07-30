@@ -50,9 +50,8 @@ export function Sidebar({ nama }: { nama: string }) {
           <Image
             src="/lambang-boyolali.svg"
             alt="Lambang"
-            width={28}
+            width={19}
             height={28}
-            style={{ height: 28, width: "auto" }}
           />
           <span
             style={{
