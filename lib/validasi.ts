@@ -134,7 +134,6 @@ export const statistikSchema = z.object({
     )
     .max(20)
     .default([]),
-  agama: distribusiSchema.default([]),
 });
 
 export const kontakSchema = z.object({

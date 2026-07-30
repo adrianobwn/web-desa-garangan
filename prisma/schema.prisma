@@ -113,7 +113,6 @@ model Statistik {
   mataPencaharian Json     @default("[]")
   pendidikan      Json     @default("[]")
   kelompokUsia    Json     @default("[]")
-  agama           Json     @default("[]")
   terakhirDiperbarui DateTime @updatedAt
 }
 

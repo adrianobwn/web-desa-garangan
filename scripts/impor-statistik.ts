@@ -28,9 +28,8 @@ async function main() {
     kelompokUsia: d.kelompokUsia,
     pendidikan: d.pendidikan,
     mataPencaharian: d.mataPencaharian,
-    // perDusun & agama dipertahankan bila sudah ada — berkas sumber tidak memuatnya.
+    // perDusun dipertahankan bila berkas sumber tidak memuatnya.
     perDusun: d.perDusun?.length ? d.perDusun : (lama?.perDusun ?? []),
-    agama: d.agama?.length ? d.agama : (lama?.agama ?? []),
   };
 
   await prisma.statistik.upsert({
