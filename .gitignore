@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+
+# .env.example harus ikut ter-commit (template tanpa rahasia)
+!.env.example
+app/generated/
+
+# Berkas sumber data warga (berisi NIK & data pribadi) — JANGAN di-commit
+*.xlsx
+*.xls

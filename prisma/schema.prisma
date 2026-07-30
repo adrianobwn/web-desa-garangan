@@ -1,0 +1,180 @@
+// Skema data Desa Garangan — sesuai bagian "Data yang perlu di-database-kan" di README handoff.
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+enum StatusBerita {
+  DRAF
+  TERBIT
+}
+
+model User {
+  id           String    @id @default(cuid())
+  username     String    @unique
+  nama         String
+  passwordHash String
+  role         Role      @default(EDITOR)
+  createdAt    DateTime  @default(now())
+
+  berita    Berita[]
+  auditLogs AuditLog[]
+}
+
+model Kategori {
+  id     String   @id @default(cuid())
+  nama   String   @unique
+  slug   String   @unique
+  berita Berita[]
+}
+
+model Berita {
+  id           String       @id @default(cuid())
+  slug         String       @unique
+  judul        String
+  ringkasan    String
+  isi          String // HTML hasil sanitasi (sanitize-html) — tidak pernah mentah dari klien
+  status       StatusBerita @default(DRAF)
+  gambarSampul String?
+  tanggalTerbit DateTime?
+  dibaca       Int          @default(0)
+  tags         String[]     @default([])
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  kategoriId String
+  kategori   Kategori @relation(fields: [kategoriId], references: [id])
+  penulisId  String
+  penulis    User     @relation(fields: [penulisId], references: [id])
+
+  // Daftar publik selalu difilter status+tanggal lalu diurut tanggal.
+  @@index([status, tanggalTerbit])
+  @@index([kategoriId, status])
+}
+
+model Agenda {
+  id        String   @id @default(cuid())
+  judul     String
+  tanggal   DateTime @db.Date
+  waktu     String? // "07.00 WIB" — teks bebas, sesuai desain
+  lokasi    String?
+  deskripsi String?
+  rutin     Boolean  @default(false) // kegiatan rutin vs agenda desa (legenda kalender)
+  createdAt DateTime @default(now())
+
+  @@index([tanggal])
+}
+
+model Pengumuman {
+  id         String   @id @default(cuid())
+  judul      String
+  isi        String
+  kategori   String?
+  disematkan Boolean  @default(false)
+  tanggal    DateTime @default(now())
+
+  @@index([disematkan, tanggal])
+}
+
+model Galeri {
+  id           String   @id @default(cuid())
+  urlFoto      String
+  publicId     String? // id Cloudinary, untuk hapus file saat record dihapus
+  kategori     String
+  keterangan   String
+  tanggalUnggah DateTime @default(now())
+
+  @@index([kategori, tanggalUnggah])
+}
+
+/// Baris tunggal (id = "singleton") — statistik desa dipakai halaman publik & beranda.
+model Statistik {
+  id              String   @id @default("singleton")
+  totalPenduduk   Int
+  jumlahKk        Int
+  lakiLaki        Int
+  perempuan       Int
+  luasWilayahHa   Int      @default(527)
+  /// Warga yang bekerja — dipakai sebagai pembagi persentase mataPencaharian.
+  /// Selisihnya terhadap totalPenduduk adalah pelajar, ibu rumah tangga, dan
+  /// lansia yang tidak lagi bekerja.
+  jumlahBekerja   Int      @default(0)
+  // Distribusi persen/jumlah disimpan sebagai JSON: [{ label, nilai }]
+  perDusun        Json     @default("[]")
+  mataPencaharian Json     @default("[]")
+  pendidikan      Json     @default("[]")
+  kelompokUsia    Json     @default("[]")
+  agama           Json     @default("[]")
+  terakhirDiperbarui DateTime @updatedAt
+}
+
+model Wilayah {
+  id           String  @id @default(cuid())
+  nama         String
+  namaKadus    String?
+  jumlahRt     Int?
+  jumlahRw     Int?
+  kelembagaan  String?
+  urutan       Int     @default(0)
+
+  @@index([urutan])
+}
+
+model PerangkatDesa {
+  id       String  @id @default(cuid())
+  nama     String
+  jabatan  String
+  foto     String?
+  tingkat  Int     @default(0) // 0=kades, 1=sekdes, 2=kasi/kaur, 3=kadus, 4=staf
+  urutan   Int     @default(0)
+
+  @@index([tingkat, urutan])
+}
+
+model PesanKontak {
+  id           String   @id @default(cuid())
+  nama         String
+  whatsapp     String
+  pesan        String
+  tanggal      DateTime @default(now())
+  statusDibalas Boolean @default(false)
+
+  @@index([statusDibalas, tanggal])
+}
+
+/// Jejak aktivitas admin: siapa mengubah/menghapus apa, kapan.
+model AuditLog {
+  id        String   @id @default(cuid())
+  aksi      String // CREATE | UPDATE | DELETE | LOGIN | LOGIN_GAGAL
+  entitas   String // "Berita", "Galeri", ...
+  entitasId String?
+  ringkasan String?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([createdAt])
+  @@index([entitas, entitasId])
+}
+
+/// Rate-limit login — dihitung per username+IP, dibersihkan berkala.
+/// ponytail: tabel DB, bukan Redis. Cukup untuk trafik satu desa; pindah ke
+/// Upstash/Redis kalau app di-deploy multi-region atau login >100/menit.
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  kunci     String // "username|ip"
+  createdAt DateTime @default(now())
+
+  @@index([kunci, createdAt])
+}
