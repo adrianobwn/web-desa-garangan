@@ -289,13 +289,9 @@ export default async function Profil() {
                     <td>
                       <strong>{w.nama}</strong>
                     </td>
-                    <td>
-                      {w.namaKadus ?? (
-                        <span style={{ color: "var(--color-neutral-500)" }}>
-                          Belum dikonfirmasi
-                        </span>
-                      )}
-                    </td>
+                    {/* Kadus yang belum ada dibiarkan kosong, bukan diberi
+                        label — keterangan resminya belum turun. */}
+                    <td>{w.namaKadus ?? ""}</td>
                     <td>
                       {w.jumlahRt
                         ? `${w.jumlahRt} RT${w.jumlahRw ? ` · RW ${w.jumlahRw}` : ""}`
@@ -341,21 +337,6 @@ export default async function Profil() {
                 ))}
               </div>
             </div>
-            {/* Muncul hanya selama masih ada baris yang belum lengkap —
-                hilang sendiri begitu semua data diisi lewat panel admin. */}
-            {wilayah.some((w) => !w.namaKadus || !w.jumlahRt) && (
-              <p
-                style={{
-                  fontSize: 13.5,
-                  lineHeight: "22px",
-                  color: "var(--color-neutral-700)",
-                  margin: "16px 0 0",
-                }}
-              >
-                Baris bertanda &quot;belum dikonfirmasi&quot; menunggu
-                keterangan resmi dari sekretaris desa.
-              </p>
-            )}
           </div>
         </div>
       </section>

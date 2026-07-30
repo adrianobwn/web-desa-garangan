@@ -247,22 +247,6 @@ export default async function HalamanStatistik() {
               </tbody>
             </table>
           </div>
-          {/* Sebagian kecil baris pendataan tidak mencantumkan RW, sehingga
-              tidak bisa dikelompokkan ke dusun mana pun. Selisihnya
-              disebutkan terbuka daripada dipaksa agar total terlihat pas. */}
-          {totalDusun.jiwa !== stat.totalPenduduk && (
-            <p
-              style={{
-                fontSize: 12.5,
-                color: "var(--color-neutral-700)",
-                margin: "16px 0 0",
-              }}
-            >
-              {angka(stat.totalPenduduk - totalDusun.jiwa)} jiwa belum tercatat
-              wilayahnya pada data pendataan, sehingga tidak termasuk dalam
-              rincian di atas.
-            </p>
-          )}
         </section>
       )}
 

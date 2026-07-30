@@ -57,26 +57,13 @@ export default async function HalamanAgenda() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "baseline",
-              marginBottom: 8,
+              marginBottom: 24,
               gap: 16,
               flexWrap: "wrap",
             }}
           >
             <Kicker>Agenda mendatang</Kicker>
           </div>
-          <p
-            style={{
-              fontSize: 14,
-              lineHeight: "23px",
-              color: "var(--color-neutral-700)",
-              margin: "0 0 24px",
-              maxWidth: "60ch",
-            }}
-          >
-            Kegiatan tingkat desa dicantumkan di sini. Acara yang dijalankan
-            masing-masing dusun diumumkan langsung oleh kepala dusun setempat.
-          </p>
-
           {mendatang.length === 0 && (
             <p className="text-muted">Belum ada agenda mendatang.</p>
           )}

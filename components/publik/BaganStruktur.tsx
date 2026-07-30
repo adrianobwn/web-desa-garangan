@@ -64,7 +64,9 @@ function Kotak({
           color: belumAda ? "var(--color-neutral-500)" : undefined,
         }}
       >
-        {belumAda ? "Belum dikonfirmasi" : nama}
+        {/* Nama yang belum ada dibiarkan kosong — &nbsp; menjaga tinggi kotak
+            tetap sama dengan kotak lain di barisnya. */}
+        {belumAda ? " " : nama}
       </p>
     </div>
   );
@@ -76,9 +78,6 @@ export function BaganStruktur({ perangkat }: { perangkat: Perangkat[] }) {
   const kasi = perangkat.filter((p) => p.tingkat === 2);
   const kadus = perangkat.filter((p) => p.tingkat === 3);
   const staf = perangkat.filter((p) => p.tingkat === 4);
-  // Kalimat penutup soal "belum dikonfirmasi" hanya relevan selama masih
-  // ada nama yang kosong.
-  const adaKosong = perangkat.some((p) => p.nama.startsWith("—"));
 
   return (
     <section style={{ padding: "56px var(--pad) 72px" }}>
@@ -203,8 +202,6 @@ export function BaganStruktur({ perangkat }: { perangkat: Perangkat[] }) {
       >
         Bagan disusun dari data perangkat desa yang dikelola lewat panel admin —
         setiap perubahan pejabat langsung tercermin di halaman ini.
-        {adaKosong &&
-          " Nama bertanda \u201cbelum dikonfirmasi\u201d menunggu keterangan resmi dari sekretaris desa."}
       </p>
     </section>
   );
