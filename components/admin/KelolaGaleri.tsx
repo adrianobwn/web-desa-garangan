@@ -37,6 +37,9 @@ export function KelolaGaleri({
     setSibuk(true);
     setPesan("");
     let berhasil = 0;
+    // Kegagalan dikumpulkan, bukan ditimpa: kalau 10 foto diunggah dan 3
+    // gagal, admin perlu tahu foto mana saja, bukan cuma yang terakhir.
+    const gagal: string[] = [];
 
     for (const [i, file] of Array.from(files).entries()) {
       setProgres(`Mengunggah ${i + 1} dari ${files.length}…`);
@@ -47,7 +50,7 @@ export function KelolaGaleri({
       const res = await fetch("/api/upload", { method: "POST", body: fd });
       const json = await res.json();
       if (!res.ok) {
-        setPesan(
+        gagal.push(
           `${file.name}: ${json.detail?.[0]?.pesan ?? json.error ?? "gagal"}`,
         );
         continue;
@@ -64,10 +67,16 @@ export function KelolaGaleri({
         }),
       });
       if (daftar.ok) berhasil++;
+      else gagal.push(`${file.name}: gagal disimpan ke galeri`);
     }
 
     setProgres("");
     setSibuk(false);
+    if (gagal.length) {
+      setPesan(
+        `${berhasil} dari ${files.length} foto berhasil. Gagal: ${gagal.join(" · ")}`,
+      );
+    }
     if (berhasil > 0) router.refresh();
   }
 
