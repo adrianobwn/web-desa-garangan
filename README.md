@@ -260,8 +260,8 @@ node -e "console.log(require('bcryptjs').hashSync('sandi-baru-yang-panjang', 12)
 
 ## 7. Yang masih perlu dilengkapi sebelum go-live
 
-Daftar pertanyaan lengkap untuk sekretaris desa ada di
-[`PERTANYAAN-SEKDES.md`](PERTANYAAN-SEKDES.md).
+Daftar pertanyaan untuk sekretaris desa ada di
+`Pertanyaan-Sekretaris-Desa.docx` (tidak ikut di-commit).
 
 **Masih kurang:**
 
