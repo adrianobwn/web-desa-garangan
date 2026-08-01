@@ -20,6 +20,14 @@ function deteksiMime(buf: Buffer): string | null {
     buf.subarray(8, 12).toString("ascii") === "WEBP"
   )
     return "image/webp";
+  // HEIC/HEIF: kotak ISO-BMFF `ftyp` di byte 4-8, lalu merek di byte 8-12.
+  // Foto bawaan iPhone memakai format ini; Cloudinary mengubahnya ke JPG/WebP
+  // saat disajikan (f_auto), jadi browser tetap bisa menampilkannya.
+  if (buf.subarray(4, 8).toString("ascii") === "ftyp") {
+    const merek = buf.subarray(8, 12).toString("ascii");
+    if (["heic", "heix", "hevc", "heim", "heis", "hevm", "mif1", "msf1"].includes(merek))
+      return "image/heic";
+  }
   return null;
 }
 
@@ -34,8 +42,13 @@ export async function unggahGambar(file: File, folder = "desa-garangan") {
   // 2. Validasi isi file sebenarnya, dan pastikan cocok dengan yang diklaim.
   const asli = deteksiMime(buf);
   if (!asli || !MIME_GAMBAR.includes(asli as (typeof MIME_GAMBAR)[number]))
-    throw new ApiError(415, "File bukan gambar JPG/PNG/WebP yang valid");
-  if (asli !== file.type)
+    throw new ApiError(415, "File bukan gambar JPG, PNG, WebP, atau HEIC yang valid");
+  // Isi berkas yang menentukan, bukan klaim klien. HEIC dan HEIF memakai wadah
+  // yang sama, dan sebagian browser mengirim type kosong untuk foto iPhone —
+  // keduanya tidak boleh dianggap penyamaran tipe.
+  const seKeluarga = (a: string, b: string) =>
+    a === b || (a.startsWith("image/he") && (b.startsWith("image/he") || b === ""));
+  if (!seKeluarga(asli, file.type))
     throw new ApiError(415, "Tipe file tidak sesuai isi berkas");
 
   if (!process.env.CLOUDINARY_API_KEY)

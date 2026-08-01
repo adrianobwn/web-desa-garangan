@@ -334,10 +334,10 @@ export function EditorBerita({
                 textAlign: "center",
               }}
             >
-              {unggah ? "Mengunggah…" : "Klik untuk unggah (JPG/PNG, maks 10MB)"}
+              {unggah ? "Mengunggah…" : "Klik untuk unggah (JPG/PNG/HEIC, maks 10MB)"}
               <input
                 type="file"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
                 style={{ display: "none" }}
                 onChange={(e) => {
                   const f = e.target.files?.[0];

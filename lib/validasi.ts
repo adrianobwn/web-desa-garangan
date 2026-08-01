@@ -155,17 +155,25 @@ export const loginSchema = z.object({
   password: z.string().min(8, "Kata sandi minimal 8 karakter").max(200),
 });
 
+// HEIC/HEIF ikut diterima karena itu format bawaan kamera iPhone. Cloudinary
+// menyajikannya sebagai JPG/WebP lewat f_auto, jadi browser tetap bisa membuka.
 export const MIME_GAMBAR = [
   "image/jpeg",
   "image/png",
   "image/webp",
+  "image/heic",
+  "image/heif",
 ] as const;
 export const MAKS_UKURAN_FILE = 10 * 1024 * 1024; // 10MB, sesuai teks dropzone desain
 
 export const uploadSchema = z.object({
-  type: z.enum(MIME_GAMBAR, {
-    message: "Format harus JPG, PNG, atau WebP",
-  }),
+  // type dari klien boleh kosong: sebagian browser tidak mengenali HEIC dan
+  // mengirim string kosong. Isi berkas tetap diperiksa lewat magic bytes.
+  type: z
+    .union([z.enum(MIME_GAMBAR), z.literal("")], {
+      message: "Format harus JPG, PNG, WebP, atau HEIC",
+    })
+    .default(""),
   size: z
     .number()
     .int()

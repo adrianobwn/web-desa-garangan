@@ -87,6 +87,20 @@ cek("upload menolak MIME & ukuran di luar batas", () => {
     true,
   );
 });
+cek("upload menerima HEIC (foto iPhone), termasuk type kosong", () => {
+  // Regresi: dulu hanya JPG/PNG/WebP, sehingga foto bawaan iPhone selalu
+  // ditolak. Sebagian browser juga mengirim type kosong untuk HEIC.
+  for (const type of ["image/heic", "image/heif", ""]) {
+    assert.equal(
+      uploadSchema.safeParse({ type, size: 500_000 }).success,
+      true,
+      `type "${type}" seharusnya diterima`,
+    );
+  }
+  // Isi berkas tetap diperiksa magic bytes di lib/cloudinary.ts, jadi type
+  // kosong bukan berarti sembarang berkas bisa lolos.
+  assert.equal(uploadSchema.safeParse({ type: "image/gif", size: 100 }).success, false);
+});
 cek("query berita: nilai aneh ditolak, default terpasang", () => {
   assert.equal(beritaQuerySchema.safeParse({ bulan: "juli" }).success, false);
   assert.equal(beritaQuerySchema.parse({}).page, 1);

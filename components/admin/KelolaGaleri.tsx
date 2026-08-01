@@ -123,13 +123,13 @@ export function KelolaGaleri({
               margin: "8px 0 0",
             }}
           >
-            JPG, PNG, atau WebP — maksimal 10MB per foto. Bisa unggah banyak
+            JPG, PNG, WebP, atau HEIC (foto iPhone), maksimal 10MB per foto. Bisa unggah banyak
             sekaligus.
           </p>
           <input
             type="file"
             multiple
-            accept="image/jpeg,image/png,image/webp"
+            accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif"
             style={{ display: "none" }}
             disabled={sibuk}
             onChange={(e) => {
@@ -190,13 +190,17 @@ export function KelolaGaleri({
                 {/* Berwarna: admin perlu lihat foto apa adanya saat memilih,
                     dan halaman galeri publik juga menampilkannya berwarna. */}
                 {f.urlFoto ? (
-                  <Image
-                    src={fotoTransform(f.urlFoto, 400)}
-                    alt={f.keterangan}
-                    width={300}
-                    height={150}
-                    style={{ width: "100%", height: 150, objectFit: "cover" }}
-                  />
+                  // `fill` + pembungkus ber-posisi: tinggi ditentukan CSS tanpa
+                  // memaksa rasio lewat width/height prop (memicu peringatan).
+                  <div style={{ position: "relative", height: 150 }}>
+                    <Image
+                      src={fotoTransform(f.urlFoto, 400)}
+                      alt={f.keterangan}
+                      fill
+                      sizes="(max-width: 640px) 50vw, 300px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
                 ) : (
                   <div className="ph" style={{ height: 150 }}>
                     {f.keterangan}
