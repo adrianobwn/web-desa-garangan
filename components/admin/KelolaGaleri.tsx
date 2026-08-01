@@ -194,7 +194,7 @@ export function KelolaGaleri({
               gap: 16,
             }}
           >
-            {foto.map((f) => (
+            {foto.map((f, i) => (
               <div key={f.id} style={{ position: "relative" }}>
                 {/* Berwarna: admin perlu lihat foto apa adanya saat memilih,
                     dan halaman galeri publik juga menampilkannya berwarna. */}
@@ -208,6 +208,8 @@ export function KelolaGaleri({
                       fill
                       sizes="(max-width: 640px) 50vw, 300px"
                       style={{ objectFit: "cover" }}
+                      // Baris pertama terlihat tanpa menggulir, jadi tidak lazy.
+                      priority={i < 5}
                     />
                   </div>
                 ) : (

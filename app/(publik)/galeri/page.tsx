@@ -130,11 +130,14 @@ export default async function HalamanGaleri({
                   key={f.id}
                   style={{ margin: 0, gridColumn: `span ${p.span}` }}
                 >
+                  {/* Foto pertama ada di paling atas halaman dan biasanya
+                      jadi LCP, jadi dimuat lebih dulu. Sisanya lazy. */}
                   <Foto
                     src={f.urlFoto || null}
                     alt={f.keterangan}
                     tinggi={p.tinggi}
                     sizes="(max-width: 640px) 100vw, 50vw"
+                    priority={i === 0}
                   />
                 </figure>
               );

@@ -42,11 +42,13 @@ export function NavPublik() {
           flexWrap: "wrap",
         }}
       >
+        {/* Selalu di atas layar pada setiap halaman, jadi tidak di-lazy. */}
         <Image
           src="/lambang-boyolali.svg"
           alt="Lambang Kabupaten Boyolali"
           width={24}
           height={36}
+          priority
         />
         <Link
           href="/"
