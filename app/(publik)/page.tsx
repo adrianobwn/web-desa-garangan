@@ -648,6 +648,7 @@ export default async function Beranda() {
                 alt={g.keterangan}
                 tinggi={200}
                 sizes="(max-width: 640px) 100vw, 33vw"
+                warna
               />
             </figure>
           ))}

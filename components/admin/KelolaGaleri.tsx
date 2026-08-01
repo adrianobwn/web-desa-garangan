@@ -187,13 +187,14 @@ export function KelolaGaleri({
           >
             {foto.map((f) => (
               <div key={f.id} style={{ position: "relative" }}>
+                {/* Berwarna: admin perlu lihat foto apa adanya saat memilih,
+                    dan halaman galeri publik juga menampilkannya berwarna. */}
                 {f.urlFoto ? (
                   <Image
                     src={fotoTransform(f.urlFoto, 400)}
                     alt={f.keterangan}
                     width={300}
                     height={150}
-                    className="grayscale"
                     style={{ width: "100%", height: 150, objectFit: "cover" }}
                   />
                 ) : (

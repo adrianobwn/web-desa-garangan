@@ -135,6 +135,7 @@ export default async function HalamanGaleri({
                     alt={f.keterangan}
                     tinggi={p.tinggi}
                     sizes="(max-width: 640px) 100vw, 50vw"
+                    warna
                   />
                 </figure>
               );
