@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -93,6 +93,14 @@ export function EditorBerita({
 
   const ubah = <K extends keyof Awal>(k: K, v: Awal[K]) =>
     setForm((f) => ({ ...f, [k]: v }));
+
+  // Isi editor diurus DOM sendiri (contentEditable), jadi cukup dipasang
+  // sekali saat halaman dibuka. Sengaja tidak bergantung pada `awal.isi`
+  // supaya ketikan admin tidak pernah tertimpa.
+  useEffect(() => {
+    if (isiRef.current) isiRef.current.innerHTML = awal.isi;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function unggahSampul(file: File) {
     setUnggah(true);
@@ -211,6 +219,10 @@ export function EditorBerita({
               document.execCommand(c, false, v);
             }}
           />
+          {/* Isi awal dipasang sekali lewat ref, BUKAN dangerouslySetInnerHTML.
+              Regresi: dulu setiap setForm (mis. mengetik ringkasan) memicu
+              render ulang, dan React menimpa isi editor kembali ke `awal.isi`
+              sehingga tulisan yang sudah diketik hilang. */}
           <div
             id="isi"
             ref={isiRef}
@@ -225,7 +237,6 @@ export function EditorBerita({
               padding: 16,
               background: "var(--color-bg)",
             }}
-            dangerouslySetInnerHTML={{ __html: awal.isi }}
           />
           <p
             style={{
