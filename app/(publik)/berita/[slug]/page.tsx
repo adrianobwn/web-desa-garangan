@@ -139,12 +139,15 @@ export default async function DetailBerita({
         </div>
 
         <figure style={{ margin: "40px 0 0" }}>
+          {/* Utuh: foto kegiatan warga kehilangan isinya kalau dipotong
+              (wajah peserta di tepi ikut terbuang). */}
           <Foto
             src={berita.gambarSampul}
             alt={`Foto: ${berita.judul}`}
-            tinggi={480}
+            tinggi={620}
             priority
             sizes="100vw"
+            utuh
           />
         </figure>
 
