@@ -78,8 +78,18 @@ npm run dev                        # buka http://localhost:3000
 ```
 
 Panel admin: <http://localhost:3000/admin/login>
-Akun awal dari seed: `admin.garangan` / `GarnganDesa#2026`
-**Ganti kata sandi ini sebelum situs dipakai publik** (lihat bagian 6).
+
+Akun admin dibuat oleh `npm run db:seed`. Tentukan sendiri kredensialnya
+lewat `.env` **sebelum** menjalankan seed:
+
+```
+SEED_ADMIN_USERNAME="..."
+SEED_ADMIN_PASSWORD="..."
+```
+
+Kalau kedua variabel itu tidak diisi, seed memakai nilai bawaan di
+`prisma/seed.ts`. **Jangan pakai nilai bawaan untuk situs yang dipakai
+publik.** Cara mengganti kata sandi ada di bagian 6.
 
 ### Isi berkas `.env`
 
