@@ -119,6 +119,16 @@ npm run db:seed      # isi ulang data contoh
 npm run db:migrate   # terapkan migrasi (produksi)
 ```
 
+`npm run build` hanya menjalankan `prisma generate`, tidak ikut memigrasi.
+**Setiap kali skema `prisma/schema.prisma` berubah, jalankan
+`npm run db:migrate` sekali secara manual** sebelum deploy. Migrasi memerlukan
+advisory lock yang tidak tersedia lewat koneksi pooled, dan bila sebuah build
+mati di tengah migrasi, lock-nya tertinggal sehingga build berikutnya gagal
+dengan galat `P1002`. Karena itu langkah ini sengaja dipisah dari build.
+
+Untuk basis data ber-pooler seperti Neon, isi `DIRECT_URL` di `.env` dengan URL
+yang sama tanpa `-pooler`.
+
 ---
 
 ## 2. Struktur proyek
