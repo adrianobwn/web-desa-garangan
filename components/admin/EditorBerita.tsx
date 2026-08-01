@@ -310,7 +310,6 @@ export function EditorBerita({
                 alt="Pratinjau sampul"
                 width={400}
                 height={220}
-                className="grayscale"
                 style={{ width: "100%", height: "auto" }}
               />
               <button

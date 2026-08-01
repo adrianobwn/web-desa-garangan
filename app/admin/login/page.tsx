@@ -100,23 +100,17 @@ export default async function HalamanLogin({
         </p>
       </div>
 
-      <figure className="grayscale desktop-only" style={{ margin: 0 }}>
-        <div
-          style={{
-            background: "var(--color-neutral-300)",
-            height: "100%",
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "flex-end",
-            padding: 40,
-            color: "var(--color-neutral-700)",
-            fontSize: 13,
-            letterSpacing: ".06em",
-            textTransform: "uppercase",
-          }}
-        >
-          Foto: Kantor Desa Garangan
-        </div>
+      <figure
+        className="desktop-only"
+        style={{ margin: 0, position: "relative", minHeight: "100vh" }}
+      >
+        <Image
+          src="/foto/balai-desa-2.jpg"
+          alt="Balai Desa Garangan"
+          fill
+          sizes="50vw"
+          style={{ objectFit: "cover" }}
+        />
       </figure>
     </div>
   );

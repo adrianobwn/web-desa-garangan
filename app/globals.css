@@ -127,7 +127,6 @@ figure { margin: 0; }
 }
 
 .tnum { font-feature-settings: "tnum" 1; }
-.grayscale { filter: grayscale(1) contrast(1.08); }
 .text-muted { color: var(--color-neutral-700); }
 
 /* Lewati navigasi — muncul hanya saat fokus keyboard. */
