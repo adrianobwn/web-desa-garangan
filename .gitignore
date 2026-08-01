@@ -48,3 +48,7 @@ app/generated/
 # Berkas sumber data warga (berisi NIK & data pribadi) - JANGAN di-commit
 *.xlsx
 *.xls
+
+# Foto asli dari HP (HEIC) — versi web ada di public/foto/
+*.HEIC
+*.heic

@@ -187,8 +187,8 @@ export default async function Beranda() {
 
       <figure style={{ margin: "0 var(--pad)" }}>
         <Foto
-          src={null}
-          alt="Foto: lanskap sawah & balai Desa Garangan"
+          src="/foto/balai-desa-3.jpg"
+          alt="Balai Desa Garangan dilihat dari lapangan"
           tinggi={420}
           priority
           sizes="100vw"
