@@ -10,6 +10,10 @@ export default defineConfig({
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    // env() melempar error saat variabel belum ada, padahal `prisma generate`
+    // sebenarnya tidak memerlukan koneksi. Nilai kosong dipakai sebagai
+    // cadangan agar generate tetap jalan; perintah yang benar-benar
+    // menghubungi basis data tetap gagal bila URL-nya tidak diisi.
+    url: process.env.DATABASE_URL ? env("DATABASE_URL") : "",
   },
 });
