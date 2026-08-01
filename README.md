@@ -250,21 +250,32 @@ node -e "console.log(require('bcryptjs').hashSync('sandi-baru-yang-panjang', 12)
 
 ## 7. Yang masih perlu dilengkapi sebelum go-live
 
-Berasal dari catatan di paket desain — **belum bisa diisi tanpa data resmi**:
+Daftar pertanyaan lengkap untuk sekretaris desa ada di
+[`PERTANYAAN-SEKDES.md`](PERTANYAAN-SEKDES.md).
 
-- [ ] Foto asli (saat ini semua masih placeholder abu-abu berlabel)
-- [ ] Nama Kepala Dusun I (Garangan)
-- [ ] RT/RW Dusun Getas Krikil, Durenan, Jurang Wuni
+**Masih kurang:**
+
+- [ ] Naskah resmi sambutan Kepala Desa, sejarah desa, & visi-misi (RPJMDes)
+      — saklarnya di `app/(publik)/profil/page.tsx` (`NASKAH_RESMI`); ubah
+      ke `true` per bagian setelah naskah resmi masuk, penanda "contoh"
+      hilang sendiri
+- [ ] Kontak desa: telepon, surel, nomor Linmas (`KONTAK` di
+      `app/(publik)/page.tsx`) — sekarang tampil "Belum tersedia"
 - [ ] Batas wilayah desa (utara/selatan/timur/barat)
-- [ ] Naskah resmi sambutan Kepala Desa & visi-misi (RPJMDes)
-- [ ] Angka statistik resmi (angka sekarang contoh proporsional)
-- [ ] Izin resmi pemakaian lambang Kabupaten Boyolali, sebaiknya versi SVG
-- [ ] Data UMKM (bagian "Potensi unggulan desa" masih komoditas pertanian)
-- [ ] Koordinat presisi Balai Desa (peta sekarang memakai pencarian nama —
-      lihat `components/publik/PetaLokasi.tsx`, tinggal ganti `KUERI`)
+- [ ] Nama Kepala Dusun I (Garangan) — jabatannya tetap tampil, namanya kosong
+- [ ] Jumlah RT Dusun IV Getas Krikil
+- [ ] Foto: Kepala Desa & perangkat desa, dokumentasi kegiatan untuk galeri
+- [ ] Gambar sampul berita
+- [ ] Nama domain (`NEXT_PUBLIC_SITE_URL` masih `localhost:3000`)
+- [ ] Kredensial Cloudinary (tanpa ini panel admin tidak bisa unggah gambar)
+- [ ] Ganti kata sandi admin bawaan seed
 
-Teks bertanda "(konfirmasi)" di halaman Profil sengaja ditampilkan agar
-terlihat mana yang belum divalidasi sekretaris desa.
+**Sudah beres:** statistik memakai data asli FORM 1 pendataan (3.848 jiwa /
+1.224 KK), koordinat peta Balai Desa presisi, lambang Boyolali versi SVG
+(izin sudah dikonfirmasi), foto Balai Desa terpasang di beranda & galeri.
+
+Data UMKM sengaja dikosongkan — bagian "Potensi unggulan desa" memakai
+komoditas pertanian dulu sampai data usaha warga tersedia.
 
 ---
 

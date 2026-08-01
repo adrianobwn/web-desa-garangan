@@ -124,8 +124,9 @@ export default async function HalamanBerita({
                 maxWidth: "52ch",
               }}
             >
-              {total} artikel dari pemerintah desa — kegiatan, pembangunan, dan
-              kabar warga Garangan.
+              {total > 0
+                ? `${total} artikel dari pemerintah desa — kegiatan, pembangunan, dan kabar warga Garangan.`
+                : "Kabar kegiatan, pembangunan, dan warga Desa Garangan."}
             </p>
           </div>
           {/* Form GET: pencarian jalan tanpa JavaScript. */}
@@ -181,9 +182,13 @@ export default async function HalamanBerita({
             </p>
           )}
 
+          {/* Tanpa filter, kosong berarti desa memang belum menerbitkan berita
+              — bukan hasil pencarian yang meleset. */}
           {hasil.items.length === 0 && (
             <p className="text-muted" style={{ fontSize: 15 }}>
-              Tidak ada berita yang cocok. Coba kata kunci atau kategori lain.
+              {adaFilter
+                ? "Tidak ada berita yang cocok. Coba kata kunci atau kategori lain."
+                : "Belum ada berita yang diterbitkan."}
             </p>
           )}
 
