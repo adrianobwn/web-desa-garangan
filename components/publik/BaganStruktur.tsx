@@ -200,8 +200,8 @@ export function BaganStruktur({ perangkat }: { perangkat: Perangkat[] }) {
           maxWidth: "62ch",
         }}
       >
-        Bagan disusun dari data perangkat desa yang dikelola lewat panel admin —
-        setiap perubahan pejabat langsung tercermin di halaman ini.
+        Bagan disusun dari data perangkat desa yang dikelola lewat panel admin.
+        Setiap perubahan pejabat langsung tercermin di halaman ini.
       </p>
     </section>
   );

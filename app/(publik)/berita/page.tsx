@@ -23,7 +23,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Berita Desa",
   description:
-    "Kabar terbaru dari Pemerintah Desa Garangan — kegiatan, pembangunan, pertanian, dan layanan warga.",
+    "Kabar terbaru dari Pemerintah Desa Garangan: kegiatan, pembangunan, pertanian, dan layanan warga.",
   alternates: { canonical: "/berita" },
 };
 
@@ -125,7 +125,7 @@ export default async function HalamanBerita({
               }}
             >
               {total > 0
-                ? `${total} artikel dari pemerintah desa — kegiatan, pembangunan, dan kabar warga Garangan.`
+                ? `${total} artikel dari pemerintah desa tentang kegiatan, pembangunan, dan kabar warga Garangan.`
                 : "Kabar kegiatan, pembangunan, dan warga Desa Garangan."}
             </p>
           </div>

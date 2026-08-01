@@ -38,7 +38,7 @@ const POTENSI = [
   {
     nama: "Jagung",
     tag: "Pertanian",
-    teks: "Komoditas utama desa — panen dua kali setahun, diserap penggilingan pakan lokal.",
+    teks: "Komoditas utama desa, panen dua kali setahun dan diserap penggilingan pakan lokal.",
   },
   {
     nama: "Singkong",

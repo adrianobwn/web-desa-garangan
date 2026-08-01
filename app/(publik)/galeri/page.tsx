@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Galeri Desa",
   description:
-    "Dokumentasi kegiatan dan wajah Desa Garangan — dari kerja bakti dusun hingga panen raya.",
+    "Dokumentasi kegiatan dan wajah Desa Garangan, dari kerja bakti dusun hingga panen raya.",
   alternates: { canonical: "/galeri" },
 };
 
@@ -89,7 +89,7 @@ export default async function HalamanGaleri({
             maxWidth: "56ch",
           }}
         >
-          Dokumentasi kegiatan dan wajah Desa Garangan — dari kerja bakti dusun
+          Dokumentasi kegiatan dan wajah Desa Garangan, dari kerja bakti dusun
           hingga panen raya.
         </p>
         <div style={{ display: "flex", gap: 10, marginTop: 28, flexWrap: "wrap" }}>

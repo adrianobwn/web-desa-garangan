@@ -28,10 +28,10 @@ const NASKAH_RESMI = {
 };
 
 const MISI = [
-  "Meningkatkan pelayanan administrasi yang cepat, mudah, dan tanpa pungutan.",
-  "Mengembangkan potensi pertanian jagung, singkong, pisang, dan kacang tanah.",
-  "Memperkuat infrastruktur dasar: jalan usaha tani, air bersih, dan irigasi.",
-  "Menghidupkan kegiatan kepemudaan dan keagamaan di tiap dusun.",
+  "Menyelenggarakan pelayanan administrasi yang cepat, mudah, dan tanpa pungutan.",
+  "Mengembangkan potensi pertanian lahan kering sebagai sumber penghidupan warga.",
+  "Memperkuat infrastruktur dasar desa: jalan, air bersih, dan sarana pertanian.",
+  "Merawat kehidupan bermasyarakat melalui gotong royong dan kegiatan warga.",
 ];
 
 // Isi null = belum ada data resmi. Baris bertanda itu otomatis diberi
@@ -57,7 +57,7 @@ export default async function Profil() {
     <>
       <KepalaHalaman
         judul="Profil Desa Garangan"
-        deskripsi="Desa di Kecamatan Wonosamodro, Kabupaten Boyolali — sekaligus ibu kota kecamatan hasil pemekaran Wonosegoro tahun 2019. Terdiri dari lima dusun dengan potensi utama pertanian lahan kering."
+        deskripsi="Desa di Kecamatan Wonosamodro, Kabupaten Boyolali. Terdiri dari lima dusun dengan potensi utama pertanian lahan kering."
         breadcrumb={[{ href: "/", label: "Beranda" }, { label: "Profil Desa" }]}
       />
 
@@ -115,8 +115,8 @@ export default async function Profil() {
               margin: 0,
             }}
           >
-            “Website ini kami hadirkan agar setiap warga — di desa maupun di
-            perantauan — dapat mengikuti kabar dan pembangunan Garangan secara
+            “Website ini kami hadirkan agar setiap warga, baik di desa maupun di
+            perantauan, dapat mengikuti kabar dan pembangunan Garangan secara
             terbuka.”
           </blockquote>
           <p
@@ -143,7 +143,7 @@ export default async function Profil() {
                 margin: "20px 0 0",
               }}
             >
-              * Teks sambutan contoh — menunggu naskah resmi dari kepala desa.
+              * Teks sambutan sementara, menunggu naskah resmi dari kepala desa.
             </p>
           )}
         </div>
@@ -172,12 +172,12 @@ export default async function Profil() {
               margin: 0,
             }}
           >
-            Desa Garangan tumbuh di tepi aliran Sungai Garangan yang membelah
-            wilayah desa dan menjadi sumber kehidupan warga sejak masa kolonial.
-            Nama desa dipercaya berasal dari nama sungai tersebut. Wilayahnya
-            merupakan lahan tadah hujan, sehingga pola tanam warga mengikuti
-            musim — jagung dan kacang tanah di musim hujan, singkong sebagai
-            andalan sepanjang tahun.
+            Desa Garangan terletak di Kecamatan Wonosamodro, Kabupaten Boyolali,
+            Jawa Tengah. Wilayahnya terbagi menjadi lima dusun: Garangan,
+            Losari, Sokokerep, Getas Krikil, dan Ngasinan. Sebagian besar
+            wilayahnya berupa lahan kering tadah hujan, sehingga pola tanam
+            warga mengikuti musim. Jagung dan kacang tanah ditanam pada musim
+            hujan, sementara singkong menjadi andalan sepanjang tahun.
           </p>
           <p
             style={{
@@ -187,10 +187,10 @@ export default async function Profil() {
               margin: "16px 0 0",
             }}
           >
-            Tahun 2019, melalui Perda Kabupaten Boyolali No. 18 Tahun 2018,
-            Kecamatan Wonosamodro dibentuk sebagai pemekaran Kecamatan
-            Wonosegoro — dan Desa Garangan ditetapkan sebagai ibu kota kecamatan
-            baru tersebut.
+            Kecamatan Wonosamodro merupakan hasil pemekaran dari Kecamatan
+            Wonosegoro. Desa Garangan menjadi salah satu desa di dalamnya, dan
+            balai desa berdampingan dengan lapangan yang menjadi pusat kegiatan
+            warga.
           </p>
           {!NASKAH_RESMI.sejarah && (
             <p
@@ -200,8 +200,8 @@ export default async function Profil() {
                 margin: "20px 0 0",
               }}
             >
-              * Narasi contoh — verifikasi asal-usul nama ke sesepuh/sekretaris
-              desa.
+              * Sejarah ringkas sementara. Asal-usul desa masih menunggu
+              keterangan dari sesepuh atau sekretaris desa.
             </p>
           )}
         </div>
@@ -257,7 +257,7 @@ export default async function Profil() {
                 margin: "20px 0 0",
               }}
             >
-              * Visi-misi contoh — menunggu dokumen RPJMDes resmi.
+              * Rumusan sementara, menunggu dokumen RPJMDes resmi.
             </p>
           )}
         </div>

@@ -35,7 +35,7 @@ export default async function HalamanAgenda() {
     <>
       <KepalaHalaman
         judul="Agenda & Pengumuman"
-        deskripsi="Jadwal kegiatan desa dan pemberitahuan resmi dari pemerintah desa — pengganti pengeras suara masjid untuk warga di perantauan."
+        deskripsi="Jadwal kegiatan desa dan pemberitahuan resmi dari pemerintah desa, agar warga di perantauan tetap dapat mengikuti."
         breadcrumb={[
           { href: "/", label: "Beranda" },
           { label: "Agenda & Pengumuman" },
