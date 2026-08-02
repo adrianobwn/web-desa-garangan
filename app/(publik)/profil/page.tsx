@@ -15,13 +15,12 @@ export const metadata: Metadata = {
 
 /**
  * Saklar naskah resmi. Selama masih `false`, halaman menampilkan penanda
- * bahwa teks sambutan, sejarah, dan visi-misi masih contoh.
+ * bahwa teks sejarah dan visi-misi masih sementara.
  *
- * Setelah naskah resmi dari kepala desa & RPJMDes dimasukkan, ubah satu
- * per satu menjadi `true` — penandanya hilang otomatis.
+ * Setelah naskah resmi dari RPJMDes dimasukkan, ubah satu per satu menjadi
+ * `true` dan penandanya hilang otomatis.
  */
 const NASKAH_RESMI = {
-  sambutan: false,
   sejarah: false,
   visiMisi: false,
 };
@@ -50,8 +49,6 @@ export default async function Profil() {
     prisma.perangkatDesa.findMany({ orderBy: [{ tingkat: "asc" }, { urutan: "asc" }] }),
   ]);
 
-  const kades = perangkat.find((p) => p.tingkat === 0);
-
   return (
     <>
       <KepalaHalaman
@@ -60,94 +57,7 @@ export default async function Profil() {
         breadcrumb={[{ href: "/", label: "Beranda" }, { label: "Profil Desa" }]}
       />
 
-      {/* Sambutan kepala desa. Kolom kiri hanya memuat nama dan jabatan,
-          jadi porsinya dikecilkan dari 4fr agar tidak menyisakan ruang
-          kosong yang lebar. */}
-      <section
-        className="split"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "3fr 9fr",
-          gap: 72,
-          padding: "56px var(--pad)",
-        }}
-      >
-        <div>
-          {/* Tanpa foto: nama dan jabatan saja, tidak memakai kotak
-              placeholder agar tidak terkesan ada foto yang belum diunggah. */}
-          <p
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 800,
-              fontSize: 20,
-              margin: "0 0 4px",
-            }}
-          >
-            {kades?.nama}
-          </p>
-          <p
-            style={{
-              fontSize: 13,
-              letterSpacing: ".06em",
-              textTransform: "uppercase",
-              color: "var(--color-neutral-700)",
-              margin: 0,
-            }}
-          >
-            Kepala Desa Garangan
-          </p>
-        </div>
-        <div>
-          <Kicker style={{ marginBottom: 20 }}>Sambutan Kepala Desa</Kicker>
-          <blockquote
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 800,
-              fontSize: 28,
-              lineHeight: 1.35,
-              letterSpacing: "-0.01em",
-              maxWidth: "34ch",
-              margin: 0,
-            }}
-          >
-            “Website ini kami hadirkan agar setiap warga, baik di desa maupun di
-            perantauan, dapat mengikuti kabar dan pembangunan Garangan secara
-            terbuka.”
-          </blockquote>
-          <p
-            style={{
-              fontSize: 15.5,
-              lineHeight: "26px",
-              color: "var(--color-neutral-800)",
-              maxWidth: "58ch",
-              margin: "28px 0 0",
-            }}
-          >
-            Assalamu&apos;alaikum warahmatullahi wabarakatuh. Atas nama
-            pemerintah desa, saya menyampaikan terima kasih atas kunjungan Anda
-            di portal resmi Desa Garangan. Melalui media ini kami berkomitmen
-            menyajikan informasi pemerintahan, pembangunan, dan kemasyarakatan
-            secara transparan. Masukan warga sangat kami harapkan demi Garangan
-            yang lebih maju.
-          </p>
-          {!NASKAH_RESMI.sambutan && (
-            <p
-              style={{
-                fontSize: 12.5,
-                color: "var(--color-neutral-700)",
-                margin: "20px 0 0",
-              }}
-            >
-              * Teks sambutan sementara, menunggu naskah resmi dari kepala desa.
-            </p>
-          )}
-        </div>
-      </section>
-
       {/* Sejarah + visi misi */}
-      <div className="pad">
-        <hr className="hr" style={{ margin: 0 }} />
-      </div>
       <section
         className="grid-2"
         style={{
