@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { KepalaHalaman, Kicker } from "@/components/publik/Kerangka";
-import { Foto } from "@/components/Foto";
 import { BaganStruktur } from "@/components/publik/BaganStruktur";
 
 export const revalidate = 3600;
@@ -61,31 +60,27 @@ export default async function Profil() {
         breadcrumb={[{ href: "/", label: "Beranda" }, { label: "Profil Desa" }]}
       />
 
-      {/* Sambutan kepala desa */}
+      {/* Sambutan kepala desa. Kolom kiri hanya memuat nama dan jabatan,
+          jadi porsinya dikecilkan dari 4fr agar tidak menyisakan ruang
+          kosong yang lebar. */}
       <section
         className="split"
         style={{
           display: "grid",
-          gridTemplateColumns: "4fr 8fr",
+          gridTemplateColumns: "3fr 9fr",
           gap: 72,
           padding: "56px var(--pad)",
         }}
       >
         <div>
-          <figure style={{ margin: 0 }}>
-            <Foto
-              src={kades?.foto}
-              alt={`Foto Kepala Desa ${kades?.nama ?? ""}`}
-              tinggi={340}
-              sizes="(max-width: 1024px) 100vw, 30vw"
-            />
-          </figure>
+          {/* Tanpa foto: nama dan jabatan saja, tidak memakai kotak
+              placeholder agar tidak terkesan ada foto yang belum diunggah. */}
           <p
             style={{
               fontFamily: "var(--font-heading)",
               fontWeight: 800,
               fontSize: 20,
-              margin: "16px 0 4px",
+              margin: "0 0 4px",
             }}
           >
             {kades?.nama}
