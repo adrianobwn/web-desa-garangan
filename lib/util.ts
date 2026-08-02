@@ -16,23 +16,46 @@ const HARI = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
 export const BULAN_SINGKAT = BULAN.map((b) => b.slice(0, 3));
 
+/** Zona waktu desa. Server produksi berjalan di UTC, jadi tanpa ini tanggal
+ *  bisa tertinggal satu hari: pukul 02.00 WIB masih terbaca hari kemarin. */
+const ZONA = "Asia/Jakarta";
+
+/** Bagian tanggal menurut waktu Indonesia, bukan waktu server. */
+function bagian(d: Date) {
+  const f = new Intl.DateTimeFormat("en-CA", {
+    timeZone: ZONA,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "short",
+  });
+  const p = Object.fromEntries(f.formatToParts(d).map((x) => [x.type, x.value]));
+  const urutHari = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return {
+    tanggal: Number(p.day),
+    bulan: Number(p.month) - 1,
+    tahun: Number(p.year),
+    hari: urutHari.indexOf(p.weekday as string),
+  };
+}
+
 /** "24 Juli 2026" */
 export function tanggalPanjang(d: Date | string | null | undefined) {
   if (!d) return "—";
-  const t = new Date(d);
-  return `${t.getDate()} ${BULAN[t.getMonth()]} ${t.getFullYear()}`;
+  const b = bagian(new Date(d));
+  return `${b.tanggal} ${BULAN[b.bulan]} ${b.tahun}`;
 }
 
 /** "24 Jul 2026" */
 export function tanggalPendek(d: Date | string | null | undefined) {
   if (!d) return "—";
-  const t = new Date(d);
-  return `${t.getDate()} ${BULAN_SINGKAT[t.getMonth()]} ${t.getFullYear()}`;
+  const b = bagian(new Date(d));
+  return `${b.tanggal} ${BULAN_SINGKAT[b.bulan]} ${b.tahun}`;
 }
 
 /** "Senin, 27 Juli 2026" — dipakai topbar & header admin. */
 export function tanggalLengkap(d: Date = new Date()) {
-  return `${HARI[d.getDay()]}, ${tanggalPanjang(d)}`;
+  return `${HARI[bagian(d).hari]}, ${tanggalPanjang(d)}`;
 }
 
 export const namaBulan = (i: number) => BULAN[i];

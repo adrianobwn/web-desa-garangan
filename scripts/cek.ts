@@ -14,7 +14,7 @@ import {
   uploadSchema,
 } from "../lib/validasi";
 import { filterPublik, whereBerita } from "../lib/queries";
-import { slugify, tanggalPanjang, angka, persen } from "../lib/util";
+import { slugify, tanggalPanjang, tanggalLengkap, angka, persen } from "../lib/util";
 
 let lulus = 0;
 function cek(nama: string, fn: () => void) {
@@ -154,6 +154,14 @@ cek("slugify aman untuk URL", () => {
 cek("format tanggal & angka Indonesia", () => {
   assert.equal(tanggalPanjang(new Date("2026-07-24T00:00:00")), "24 Juli 2026");
   assert.equal(angka(4212), "4.212");
+});
+cek("tanggal memakai waktu Indonesia, bukan waktu server", () => {
+  // Regresi: server produksi berjalan di UTC, sehingga pukul 02.26 WIB
+  // masih terbaca sebagai hari sebelumnya di topbar.
+  // 2 Agustus 19:26 UTC = 3 Agustus 02:26 WIB (Senin).
+  const t = new Date("2026-08-02T19:26:00Z");
+  assert.equal(tanggalLengkap(t), "Senin, 3 Agustus 2026");
+  assert.equal(tanggalPanjang(t), "3 Agustus 2026");
 });
 
 console.log("\nForm agenda & pengumuman (admin)");
