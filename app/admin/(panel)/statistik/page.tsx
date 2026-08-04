@@ -11,7 +11,7 @@ const KOSONG: NilaiStatistik = {
   jumlahKk: 0,
   lakiLaki: 0,
   perempuan: 0,
-  luasWilayahHa: 527,
+  luasWilayahHa: 881,
   jumlahBekerja: 0,
   perDusun: [],
   mataPencaharian: [],

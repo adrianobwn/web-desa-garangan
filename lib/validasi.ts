@@ -110,7 +110,7 @@ export const statistikSchema = z.object({
   jumlahKk: z.coerce.number().int().min(0).max(1_000_000),
   lakiLaki: z.coerce.number().int().min(0).max(1_000_000),
   perempuan: z.coerce.number().int().min(0).max(1_000_000),
-  luasWilayahHa: z.coerce.number().int().min(0).max(100_000).default(527),
+  luasWilayahHa: z.coerce.number().int().min(0).max(100_000).default(881),
   jumlahBekerja: z.coerce.number().int().min(0).max(1_000_000).default(0),
   perDusun: z
     .array(

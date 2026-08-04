@@ -38,9 +38,10 @@ const GEOGRAFIS: [string, string | null][] = [
   ["Kode pos", "57382"],
   ["Topografi", "Lahan tadah hujan"],
   ["Sungai", "Sungai Garangan"],
-  ["Batas utara", null],
-  ["Batas selatan", null],
-  ["Batas timur/barat", null],
+  ["Batas utara", "Desa Gunung Sari"],
+  ["Batas selatan", "Desa Bandung"],
+  ["Batas timur", "Desa Bojong"],
+  ["Batas barat", "Desa Jatilawang"],
 ];
 
 export default async function Profil() {

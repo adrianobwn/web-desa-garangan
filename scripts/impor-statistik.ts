@@ -23,7 +23,7 @@ async function main() {
     jumlahKk: d.jumlahKk,
     lakiLaki: d.lakiLaki,
     perempuan: d.perempuan,
-    luasWilayahHa: d.luasWilayahHa ?? 527,
+    luasWilayahHa: d.luasWilayahHa ?? 881,
     jumlahBekerja: d.jumlahBekerja ?? 0,
     kelompokUsia: d.kelompokUsia,
     pendidikan: d.pendidikan,
