@@ -40,7 +40,7 @@ const POTENSI = [
     nama: "Jagung",
     tag: "Pertanian",
     teks: "Komoditas utama desa, panen dua kali setahun dan diserap penggilingan pakan lokal.",
-    foto: null,
+    foto: "/foto/tanaman-jagung.jpg",
   },
   {
     nama: "Singkong",
