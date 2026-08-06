@@ -416,15 +416,15 @@ a.tag-outline:hover {
 
 /* Baris anak: tiap kotak diberi "kaki" ke atas, plus palang mendatar
    yang menyatukan seluruh baris. */
+/* --kolom diisi komponen sesuai jumlah kotak; 4 dipakai bila tidak diset. */
 .org-baris {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(var(--kolom, 4), minmax(0, 1fr));
   gap: 20px;
   width: 100%;
   padding-top: 26px;
 }
-.org-baris-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 
 /* Palang mendatar — dipotong setengah kotak di kiri & kanan supaya
    berhenti tepat di atas kotak terluar, bukan menggantung di udara. */
@@ -432,14 +432,15 @@ a.tag-outline:hover {
   content: "";
   position: absolute;
   top: 0;
-  left: calc(100% / 8);
-  right: calc(100% / 8);
+  left: calc(100% / var(--kolom, 4) / 2);
+  right: calc(100% / var(--kolom, 4) / 2);
   height: 2px;
   background: var(--color-divider);
 }
-.org-baris-5::before {
-  left: calc(100% / 10);
-  right: calc(100% / 10);
+
+/* Satu kotak tidak butuh palang mendatar — kakinya sudah cukup. */
+.org-baris:has(> .org-kotak:only-child)::before {
+  display: none;
 }
 
 /* Kaki vertikal dari palang ke tiap kotak. */
@@ -472,10 +473,10 @@ a.tag-outline:hover {
 }
 
 @media (max-width: 900px) {
-  /* Bagan lebar tidak muat: jadikan daftar bertingkat, garis palang dibuang. */
-  .org-baris,
-  .org-baris-5 {
-    grid-template-columns: 1fr 1fr;
+  /* Bagan lebar tidak muat: jadikan daftar bertingkat, garis palang dibuang.
+     --kolom ditimpa di sini karena nilainya diset inline dari komponen. */
+  .org-baris {
+    --kolom: 2;
     padding-top: 0;
     gap: 12px;
   }
@@ -487,8 +488,7 @@ a.tag-outline:hover {
 }
 
 @media (max-width: 640px) {
-  .org-baris,
-  .org-baris-5 { grid-template-columns: 1fr; }
+  .org-baris { --kolom: 1; }
 }
 
 /* — isi berita hasil sanitasi — */

@@ -121,7 +121,10 @@ export function BaganStruktur({ perangkat }: { perangkat: Perangkat[] }) {
           <>
             <div className="org-garis" aria-hidden="true" />
             <p className="org-label">Kepala Seksi &amp; Kepala Urusan</p>
-            <div className="org-baris">
+            <div
+              className="org-baris"
+              style={{ "--kolom": kasi.length } as React.CSSProperties}
+            >
               {kasi.map((p) => (
                 <Kotak key={p.id} jabatan={p.jabatan} nama={p.nama} />
               ))}
@@ -133,7 +136,16 @@ export function BaganStruktur({ perangkat }: { perangkat: Perangkat[] }) {
           <>
             <div className="org-garis" aria-hidden="true" />
             <p className="org-label">Kepala Dusun</p>
-            <div className="org-baris org-baris-5">
+            {/* Jumlah kolom ikut jumlah kadus, supaya palang mendatar berhenti
+                tepat di kotak terluar walau jumlah dusun berubah. */}
+            <div
+              className="org-baris"
+              style={
+                {
+                  "--kolom": kadus.length,
+                } as React.CSSProperties
+              }
+            >
               {kadus.map((p) => (
                 <Kotak key={p.id} jabatan={p.jabatan} nama={p.nama} />
               ))}
