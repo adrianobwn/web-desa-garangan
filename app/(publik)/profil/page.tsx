@@ -88,7 +88,7 @@ export default async function Profil() {
     <>
       <KepalaHalaman
         judul="Profil Desa Garangan"
-        deskripsi="Desa di Kecamatan Wonosamodro, Kabupaten Boyolali. Terdiri dari lima dusun dengan potensi utama pertanian lahan kering."
+        deskripsi="Desa di Kecamatan Wonosamodro, Kabupaten Boyolali. Terdiri dari lima wilayah dusun dengan potensi utama pertanian lahan kering."
         breadcrumb={[{ href: "/", label: "Beranda" }, { label: "Profil Desa" }]}
       />
 
@@ -301,92 +301,107 @@ export default async function Profil() {
               </tbody>
             </table>
           </div>
-          <div>
-            <div style={{ border: "2px solid var(--color-divider)", padding: 28 }}>
-              <Kicker style={{ marginBottom: 16 }}>Geografis</Kicker>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  fontSize: 14.5,
-                  lineHeight: "23px",
-                }}
-              >
-                {GEOGRAFIS.map(([k, v], i) => (
-                  <div
-                    key={k}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      gap: 16,
-                      padding: "10px 0",
-                      borderTop: "1px solid var(--color-neutral-300)",
-                      borderBottom:
-                        i === GEOGRAFIS.length - 1
-                          ? "1px solid var(--color-neutral-300)"
-                          : undefined,
-                    }}
-                  >
-                    <span style={{ color: "var(--color-neutral-700)" }}>{k}</span>
-                    <strong style={{ color: v ? undefined : "var(--color-neutral-500)" }}>
-                      {v ?? "Belum dikonfirmasi"}
-                    </strong>
-                  </div>
-                ))}
-              </div>
-            </div>
 
+          <div style={{ border: "2px solid var(--color-divider)", padding: 28 }}>
+            <Kicker style={{ marginBottom: 16 }}>Geografis</Kicker>
             <div
               style={{
-                border: "2px solid var(--color-divider)",
-                padding: 28,
-                marginTop: 24,
+                display: "flex",
+                flexDirection: "column",
+                fontSize: 14.5,
+                lineHeight: "23px",
               }}
             >
-              <Kicker style={{ marginBottom: 16 }}>Penggunaan lahan</Kicker>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  fontSize: 14.5,
-                  lineHeight: "23px",
-                }}
-              >
-                {PENGGUNAAN_LAHAN.map(([nama, ha], i) => (
-                  <div
-                    key={nama}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      gap: 16,
-                      padding: "10px 0",
-                      borderTop: "1px solid var(--color-neutral-300)",
-                      borderBottom:
-                        i === PENGGUNAAN_LAHAN.length - 1
-                          ? "1px solid var(--color-neutral-300)"
-                          : undefined,
-                    }}
-                  >
-                    <span style={{ color: "var(--color-neutral-700)" }}>{nama}</span>
-                    <strong>
-                      {ha.toLocaleString("id-ID", { minimumFractionDigits: 3 })} ha
-                    </strong>
-                  </div>
-                ))}
-              </div>
-              <p
-                style={{
-                  fontSize: 12.5,
-                  color: "var(--color-neutral-700)",
-                  margin: "16px 0 0",
-                }}
-              >
-                Sumber: RPJMDes Perubahan 2020–2027 (Perdes No. 2 Tahun 2025).
-              </p>
+              {GEOGRAFIS.map(([k, v], i) => (
+                <div
+                  key={k}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 16,
+                    padding: "10px 0",
+                    borderTop: "1px solid var(--color-neutral-300)",
+                    borderBottom:
+                      i === GEOGRAFIS.length - 1
+                        ? "1px solid var(--color-neutral-300)"
+                        : undefined,
+                  }}
+                >
+                  <span style={{ color: "var(--color-neutral-700)" }}>{k}</span>
+                  <strong style={{ color: v ? undefined : "var(--color-neutral-500)" }}>
+                    {v ?? "Belum dikonfirmasi"}
+                  </strong>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+          </div>
+
+          {/* Penggunaan lahan dipisah ke barisnya sendiri: daftarnya tujuh
+              baris, terlalu tinggi bila ditumpuk di kolom samping. */}
+          <div
+            style={{
+              border: "2px solid var(--color-divider)",
+              padding: "28px 28px 24px",
+              marginTop: 40,
+            }}
+          >
+            <Kicker style={{ marginBottom: 20 }}>Penggunaan lahan</Kicker>
+            <div className="lahan-grid">
+              {PENGGUNAAN_LAHAN.map(([nama, ha]) => (
+                <div
+                  key={nama}
+                  style={{
+                    borderTop: "2px solid var(--color-divider)",
+                    paddingTop: 12,
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: 13,
+                      color: "var(--color-neutral-700)",
+                      marginBottom: 4,
+                    }}
+                  >
+                    {nama}
+                  </span>
+                  <strong
+                    style={{
+                      fontFamily: "var(--font-heading)",
+                      fontWeight: 800,
+                      fontSize: 19,
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {ha.toLocaleString("id-ID", { minimumFractionDigits: 3 })}
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 400,
+                        color: "var(--color-neutral-700)",
+                      }}
+                    >
+                      {" "}
+                      ha
+                    </span>
+                  </strong>
+                </div>
+              ))}
+            </div>
+            <p
+              style={{
+                fontSize: 12.5,
+                color: "var(--color-neutral-700)",
+                margin: "24px 0 0",
+              }}
+            >
+              Sumber: RPJMDes Perubahan 2020–2027 (Perdes No. 2 Tahun 2025).
+              Total 880,756 ha.
+            </p>
+          </div>
+        </section>
+
 
       {/* Struktur organisasi */}
       <div className="pad">

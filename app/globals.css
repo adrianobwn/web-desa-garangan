@@ -458,6 +458,13 @@ a.tag-outline:hover {
   background: var(--color-divider);
 }
 
+/* Rincian penggunaan lahan: kolom mengalir, tanpa jumlah tetap. */
+.lahan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px 28px;
+}
+
 /* Staf sekretariat: kartu ringkas dengan inisial, bukan daftar teks. */
 .org-staf {
   display: grid;
