@@ -34,26 +34,31 @@ const KONTAK = {
   puskesmas: "0812-2890-585",
 };
 
+// foto null = belum ada dokumentasi, tampil placeholder abu-abu.
 const POTENSI = [
   {
     nama: "Jagung",
     tag: "Pertanian",
     teks: "Komoditas utama desa, panen dua kali setahun dan diserap penggilingan pakan lokal.",
+    foto: null,
   },
   {
     nama: "Singkong",
     tag: "Pertanian",
     teks: "Andalan lahan tadah hujan, bahan baku olahan pangan rumah tangga.",
+    foto: "/foto/tanaman-singkong.jpg",
   },
   {
     nama: "Pisang",
     tag: "Perkebunan",
     teks: "Ditanam di pekarangan hampir setiap rumah, dijual ke pasar kecamatan.",
+    foto: "/foto/tanaman-pisang.jpeg",
   },
   {
     nama: "Kacang tanah",
     tag: "Pertanian",
     teks: "Tanaman sela musim kemarau, hasil dijual dalam bentuk polong kering.",
+    foto: "/foto/tanaman-kacang-tanah.jpeg",
   },
 ];
 
@@ -520,8 +525,8 @@ export default async function Beranda() {
             <article className="card" key={p.nama}>
               <figure style={{ margin: "0 0 16px" }}>
                 <Foto
-                  src={null}
-                  alt={`Foto ${p.nama.toLowerCase()}`}
+                  src={p.foto}
+                  alt={`Tanaman ${p.nama.toLowerCase()} di Desa Garangan`}
                   tinggi={140}
                   sizes="(max-width: 640px) 100vw, 25vw"
                 />

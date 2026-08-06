@@ -49,9 +49,6 @@ app/generated/
 *.xlsx
 *.xls
 
-# Foto asli dari HP (HEIC) — versi web ada di public/foto/
-*.HEIC
-*.heic
 
 # Dokumen kerja internal, bukan bagian dari aplikasi
 *.docx
