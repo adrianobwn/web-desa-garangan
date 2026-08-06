@@ -45,7 +45,7 @@ const WILAYAH = [
     namaKadus: "Ngatiri",
     jumlahRt: 4,
     jumlahRw: 1,
-    kelembagaan: null,
+    kelembagaan: "Karang Taruna",
     urutan: 3,
   },
   {

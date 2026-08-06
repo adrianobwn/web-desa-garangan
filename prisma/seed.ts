@@ -310,6 +310,7 @@ async function main() {
         namaKadus: "Ngatiri",
         jumlahRt: 4,
         jumlahRw: 1,
+        kelembagaan: "Karang Taruna",
         urutan: 3,
       },
       {
