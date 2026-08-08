@@ -28,7 +28,17 @@ const slugify = (s: string) =>
 
 async function main() {
   const username = process.env.SEED_ADMIN_USERNAME ?? "admin.garangan";
-  const password = process.env.SEED_ADMIN_PASSWORD ?? "GarnganDesa#2026";
+  // Password tidak lagi punya nilai bawaan di kode: repo ini publik, jadi
+  // sandi apa pun yang ditulis di sini otomatis bocor. Isi lewat .env.
+  // Akun yang sudah ada tidak terpengaruh — upsert di bawah memakai
+  // `update: {}`, sehingga sandi lama tetap berlaku.
+  const password = process.env.SEED_ADMIN_PASSWORD;
+  if (!password) {
+    throw new Error(
+      "SEED_ADMIN_PASSWORD belum diisi. Setel di .env sebelum menjalankan seed, mis.\n" +
+        '  SEED_ADMIN_PASSWORD="sandi-yang-kuat"',
+    );
+  }
 
   const admin = await prisma.user.upsert({
     where: { username },

@@ -43,7 +43,7 @@ const MISI = [
 // keterangan "belum dikonfirmasi"; setelah diisi, keterangannya hilang sendiri.
 const GEOGRAFIS: [string, string | null][] = [
   ["Kode pos", "57382"],
-  ["Luas wilayah", "880,756 ha"],
+  ["Luas wilayah", "881 ha"],
   ["Topografi", "Lahan tadah hujan"],
   ["Sungai", "Sungai Garangan & Sungai Serang"],
   ["Jarak ke kecamatan", "3 km"],
@@ -396,8 +396,8 @@ export default async function Profil() {
                 margin: "24px 0 0",
               }}
             >
-              Sumber: RPJMDes Perubahan 2020–2027 (Perdes No. 2 Tahun 2025).
-              Total 880,756 ha.
+              Rincian menurut RPJMDes Perubahan 2020–2027 (Perdes No. 2 Tahun
+              2025), berjumlah 880,756 ha atau dibulatkan 881 ha.
             </p>
           </div>
         </section>
