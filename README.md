@@ -152,6 +152,7 @@ lib/
 prisma/schema.prisma model data
 scripts/
   cek.ts             pemeriksaan mandiri
+  impor-statistik.ts impor statistik penduduk dari hasil olah data
   backup.sh          backup database
 ```
 
