@@ -23,6 +23,7 @@ export default async function BeritaBaru() {
           gambarSampul: null,
           tanggalTerbit: null,
           tags: [],
+          namaPenulis: null,
         }}
       />
     </>

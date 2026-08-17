@@ -43,6 +43,7 @@ export const PUT = handler(async (req, { params }: Ctx) => {
           ? new Date()
           : sebelum.tanggalTerbit),
       tags: data.tags,
+      namaPenulis: data.namaPenulis?.trim() || null,
     },
   });
 

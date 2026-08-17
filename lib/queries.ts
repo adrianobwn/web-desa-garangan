@@ -73,6 +73,7 @@ export async function daftarBerita(opsi: {
         tanggalTerbit: true,
         dibaca: true,
         status: true,
+        namaPenulis: true,
         kategori: { select: { nama: true, slug: true } },
         penulis: { select: { nama: true } },
       },

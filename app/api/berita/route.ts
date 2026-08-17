@@ -48,6 +48,7 @@ export const POST = handler(async (req) => {
           ? (data.tanggalTerbit ?? new Date())
           : (data.tanggalTerbit ?? null),
       tags: data.tags,
+      namaPenulis: data.namaPenulis?.trim() || null,
       penulisId: user.id,
     },
   });

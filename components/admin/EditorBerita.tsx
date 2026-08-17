@@ -16,6 +16,7 @@ type Awal = {
   gambarSampul: string | null;
   tanggalTerbit: string | null;
   tags: string[];
+  namaPenulis: string | null;
 };
 
 /**
@@ -314,6 +315,28 @@ export function EditorBerita({
             value={form.ringkasan}
             onChange={(e) => ubah("ringkasan", e.target.value)}
           />
+        </div>
+
+        <div className="field" style={{ marginTop: 16 }}>
+          <label htmlFor="namaPenulis">Penulis / reporter</label>
+          <input
+            id="namaPenulis"
+            className="input"
+            type="text"
+            placeholder="mis. Rina Kusuma — kosongkan untuk memakai nama akun"
+            value={form.namaPenulis ?? ""}
+            onChange={(e) => ubah("namaPenulis", e.target.value || null)}
+          />
+          <p
+            style={{
+              fontSize: 12,
+              color: "var(--color-neutral-700)",
+              margin: "6px 0 0",
+            }}
+          >
+            Nama yang tampil sebagai penulis berita. Bila dikosongkan, dipakai
+            nama akun yang sedang masuk.
+          </p>
         </div>
 
         <div className="field" style={{ marginTop: 16 }}>

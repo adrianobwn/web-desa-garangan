@@ -26,6 +26,13 @@ export const beritaSchema = z.object({
   gambarSampul: z.url("URL gambar tidak valid").or(z.literal("")).nullish(),
   tanggalTerbit: z.coerce.date().nullish(),
   tags: z.array(z.string().trim().min(1).max(40)).max(12).default([]),
+  // Nama reporter. Kosong = jatuh ke nama akun yang menulis.
+  namaPenulis: z
+    .string()
+    .trim()
+    .max(80, "Nama penulis maksimal 80 karakter")
+    .or(z.literal(""))
+    .nullish(),
 });
 
 /**

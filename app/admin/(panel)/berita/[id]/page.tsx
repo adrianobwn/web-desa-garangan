@@ -40,6 +40,7 @@ export default async function EditBerita({
           tanggalTerbit:
             berita.tanggalTerbit?.toISOString().slice(0, 10) ?? null,
           tags: berita.tags,
+          namaPenulis: berita.namaPenulis,
         }}
       />
     </>

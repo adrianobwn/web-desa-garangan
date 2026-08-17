@@ -51,6 +51,11 @@ model Berita {
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 
+  // Nama reporter yang ditulis di berita. Kosong = pakai nama akun penulis.
+  // Satu akun admin dipakai bergantian oleh anggota KKN, jadi nama yang tampil
+  // ke pembaca tidak selalu sama dengan pemilik akun.
+  namaPenulis String?
+
   kategoriId String
   kategori   Kategori @relation(fields: [kategoriId], references: [id])
   penulisId  String

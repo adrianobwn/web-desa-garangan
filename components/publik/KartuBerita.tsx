@@ -11,6 +11,8 @@ type Berita = {
   dibaca?: number;
   kategori: { nama: string };
   penulis?: { nama: string };
+  /** Nama reporter; kalau kosong dipakai nama akun penulis. */
+  namaPenulis?: string | null;
 };
 
 export function KartuBerita({
@@ -51,8 +53,8 @@ export function KartuBerita({
           {tanggalPanjang(berita.tanggalTerbit)}
           {berita.dibaca !== undefined
             ? ` · ${berita.dibaca} dibaca`
-            : berita.penulis
-              ? ` · ${berita.penulis.nama}`
+            : berita.namaPenulis || berita.penulis
+              ? ` · ${berita.namaPenulis || berita.penulis?.nama}`
               : ""}
         </p>
       </Link>

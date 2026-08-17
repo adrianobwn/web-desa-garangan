@@ -248,7 +248,8 @@ export default async function HalamanBerita({
                     }}
                   >
                     {tanggalPanjang(unggulan.tanggalTerbit)} ·{" "}
-                    {unggulan.penulis.nama} · {unggulan.dibaca} dibaca
+                    {unggulan.namaPenulis || unggulan.penulis.nama} ·{" "}
+                    {unggulan.dibaca} dibaca
                   </p>
                 </div>
               </article>

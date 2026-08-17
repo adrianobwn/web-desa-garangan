@@ -131,7 +131,8 @@ export default async function DetailBerita({
             }}
           >
             <span style={{ fontSize: 14, color: "var(--color-neutral-800)" }}>
-              Ditulis oleh <strong>{berita.penulis.nama}</strong> ·{" "}
+              Ditulis oleh{" "}
+              <strong>{berita.namaPenulis || berita.penulis.nama}</strong> ·{" "}
               {tanggalPanjang(berita.tanggalTerbit)} · {berita.dibaca} dibaca
             </span>
             <TombolBagikan judul={berita.judul} />
