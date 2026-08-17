@@ -513,7 +513,23 @@ a.tag-outline:hover {
 .artikel ul,
 .artikel ol { margin: 0 0 24px; padding-left: 24px; }
 .artikel li { margin-bottom: 8px; }
-.artikel img { margin: 24px 0; }
+/* Foto dalam isi berita: lebar penuh kolom, tidak pernah meluber. */
+.artikel img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 24px 0;
+}
+.artikel figure { margin: 24px 0; }
+.artikel figure img { margin: 0; }
+.artikel figcaption {
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-neutral-700);
+  border-left: 2px solid var(--color-divider);
+  padding-left: 12px;
+  margin-top: 10px;
+}
 .artikel blockquote {
   margin: 36px 0;
   padding-left: 24px;
